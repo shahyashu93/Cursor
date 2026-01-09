@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ff4d8d" />
+  <title>For My Best Friend 💖</title>
+  <style>
+    /* -------------------------------------------------
+       ✨ Personalize quickly (change these 3 lines)
+    --------------------------------------------------*/
+    :root{
+      --friendName: "Bestie";          /* Used in JS text only */
+      --accent: #ff4d8d;
+      --accent2:#7c3aed;
+      --bg1:#0b1020;
+      --bg2:#120a1d;
+      --glass: rgba(255,255,255,.08);
+      --glass2: rgba(255,255,255,.12);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --shadow: 0 18px 50px rgba(0,0,0,.45);
+      --radius: 28px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      overflow-x:hidden;
+      background:
+        radial-gradient(1200px 800px at 10% 10%, rgba(255,77,141,.25), transparent 60%),
+        radial-gradient(1000px 700px at 90% 20%, rgba(124,58,237,.25), transparent 60%),
+        radial-gradient(900px 700px at 50% 85%, rgba(34,197,94,.14), transparent 55%),
+        linear-gradient(160deg, var(--bg1), var(--bg2));
+    }
+
+    /* Subtle moving gradient film */
+    .film{
+      position:fixed; inset:-30%;
+      background: conic-gradient(from 180deg at 50% 50%, rgba(255,77,141,.08), rgba(124,58,237,.08), rgba(255,255,255,.02), rgba(34,197,94,.06), rgba(255,77,141,.08));
+      filter: blur(60px);
+      animation: drift 18s linear infinite;
+      pointer-events:none;
+      opacity:.9;
+      transform: translateZ(0);
+    }
+    @keyframes drift{
+      0%{transform: translate(-4%, -2%) rotate(0deg)}
+      50%{transform: translate(4%, 3%) rotate(180deg)}
+      100%{transform: translate(-4%, -2%) rotate(360deg)}
+    }
+
+    /* Floating sparkle dots */
+    .stars{position:fixed; inset:0; pointer-events:none; opacity:.55}
+    .stars span{
+      position:absolute;
+      width:2px; height:2px;
+      background: rgba(255,255,255,.8);
+      border-radius:999px;
+      box-shadow: 0 0 16px rgba(255,255,255,.5);
+      animation: twinkle var(--t,5s) ease-in-out infinite;
+    }
+    @keyframes twinkle{
+      0%,100%{transform: translateY(0) scale(.9); opacity:.35}
+      50%{transform: translateY(-16px) scale(1.5); opacity:.95}
+    }
+
+    .wrap{min-height:100%; display:flex; align-items:center; justify-content:center; padding:48px 18px; position:relative}
+
+    .card{
+      width:min(980px, 100%);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+      border: 1px solid rgba(255,255,255,.16);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      overflow:hidden;
+      position:relative;
+    }
+
+    .topGlow{
+      position:absolute; inset:-1px;
+      background: radial-gradient(900px 350px at 20% 0%, rgba(255,77,141,.25), transparent 55%),
+                  radial-gradient(900px 350px at 85% 0%, rgba(124,58,237,.25), transparent 55%);
+      pointer-events:none;
+    }
+
+    header{
+      padding:34px 26px 18px;
+      display:grid;
+      gap:16px;
+      grid-template-columns: 1.2fr .8fr;
+      align-items:center;
+    }
+
+    @media (max-width: 860px){
+      header{grid-template-columns: 1fr; padding:28px 18px 14px}
+    }
+
+    .badge{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.16);
+      width: fit-content;
+    }
+    .pulse{
+      width:10px; height:10px; border-radius:999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 0 rgba(255,77,141,.65);
+      animation: pulse 1.6s infinite;
+    }
+    @keyframes pulse{
+      0%{box-shadow: 0 0 0 0 rgba(255,77,141,.55)}
+      70%{box-shadow: 0 0 0 14px rgba(255,77,141,0)}
+      100%{box-shadow: 0 0 0 0 rgba(255,77,141,0)}
+    }
+
+    h1{
+      margin:0;
+      font-size: clamp(34px, 4.2vw, 56px);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+    }
+
+    .gradientText{
+      background: linear-gradient(90deg, rgba(255,77,141,1), rgba(124,58,237,1), rgba(34,197,94,1));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color: transparent;
+    }
+
+    .sub{
+      margin:0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height:1.6;
+      max-width: 60ch;
+    }
+
+    .ctaRow{
+      margin-top:16px;
+      display:flex;
+      gap:12px;
+      flex-wrap: wrap;
+    }
+
+    button{
+      border:0;
+      cursor:pointer;
+      color: var(--text);
+      font-weight: 700;
+      letter-spacing: .2px;
+      border-radius: 16px;
+      padding: 12px 14px;
+      font-size: 15px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.14);
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      user-select:none;
+      display:inline-flex; align-items:center; gap:10px;
+    }
+    button:hover{transform: translateY(-2px); background: rgba(255,255,255,.13); border-color: rgba(255,255,255,.22)}
+    button:active{transform: translateY(0)}
+
+    .primary{
+      background: linear-gradient(90deg, rgba(255,77,141,.95), rgba(124,58,237,.92));
+      border-color: rgba(255,255,255,.20);
+      box-shadow: 0 10px 30px rgba(255,77,141,.18);
+    }
+    .primary:hover{filter: brightness(1.02)}
+
+    .right{
+      justify-self:end;
+      width: 100%;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    @media (max-width: 860px){
+      .right{justify-self:start}
+    }
+
+    .miniCard{
+      border-radius: 22px;
+      padding: 14px 14px 12px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+    }
+
+    .statRow{display:flex; gap:10px; flex-wrap:wrap}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.16);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.84);
+      font-size: 13px;
+    }
+
+    /* Divider */
+    .divider{height:1px; background: rgba(255,255,255,.12); margin: 0 22px}
+
+    /* Compliment section */
+    main{padding: 18px 22px 24px; display:grid; grid-template-columns: 1.2fr .8fr; gap:14px}
+    @media (max-width: 860px){main{grid-template-columns:1fr; padding: 14px 18px 20px}}
+
+    .bigCompliment{
+      border-radius: 26px;
+      padding: 18px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.14);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .bigCompliment:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(600px 260px at 20% 0%, rgba(255,77,141,.22), transparent 60%),
+                  radial-gradient(600px 260px at 80% 100%, rgba(124,58,237,.18), transparent 60%);
+      pointer-events:none;
+      opacity:.9;
+    }
+
+    .quote{
+      position:relative;
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+
+    .mark{
+      font-size: 28px;
+      line-height: 1;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,.35));
+    }
+
+    .complimentText{
+      margin:0;
+      font-size: clamp(18px, 2.05vw, 24px);
+      line-height:1.35;
+      letter-spacing: -0.01em;
+    }
+
+    .meta{
+      margin-top: 10px;
+      color: var(--muted);
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      font-size: 13px;
+      color: rgba(255,255,255,.82);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .note{
+      border-radius: 26px;
+      padding: 16px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.14);
+    }
+
+    .note h3{margin:0 0 8px; font-size:16px}
+    .note p{margin:0; color: var(--muted); line-height:1.6; font-size:14px}
+
+    /* Wish list */
+    .list{margin:12px 0 0; padding:0; list-style:none; display:grid; gap:10px}
+    .list li{
+      display:flex; gap:10px;
+      padding: 10px 12px;
+      border-radius: 18px;
+      background: rgba(0,0,0,.18);
+      border: 1px solid rgba(255,255,255,.10);
+      color: rgba(255,255,255,.85);
+      font-size: 14px;
+    }
+
+    .check{
+      width:22px; height:22px; border-radius: 8px;
+      background: linear-gradient(135deg, rgba(34,197,94,.95), rgba(255,255,255,.10));
+      display:grid; place-items:center;
+      flex: 0 0 auto;
+      box-shadow: 0 10px 22px rgba(34,197,94,.16);
+    }
+
+    footer{
+      padding: 14px 22px 18px;
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 12px;
+      color: rgba(255,255,255,.65);
+      font-size: 13px;
+    }
+    @media (max-width: 860px){footer{padding: 12px 18px 16px; flex-direction:column; align-items:flex-start}}
+
+    /* Cute heart burst */
+    .burst{position:fixed; inset:0; pointer-events:none; overflow:hidden}
+    .heart{
+      position:absolute;
+      width:18px; height:18px;
+      transform: rotate(45deg);
+      animation: floatUp var(--d,1200ms) ease-out forwards;
+      filter: drop-shadow(0 10px 25px rgba(0,0,0,.35));
+    }
+    .heart:before,.heart:after{
+      content:"";
+      position:absolute;
+      width:18px; height:18px;
+      background: var(--c, var(--accent));
+      border-radius: 50%;
+    }
+    .heart:before{left:-9px}
+    .heart:after{top:-9px}
+    .heart{background: var(--c, var(--accent))}
+
+    @keyframes floatUp{
+      0%{opacity:0; transform: translate(var(--sx,0), var(--sy,0)) rotate(45deg) scale(.6)}
+      15%{opacity:1}
+      100%{opacity:0; transform: translate(calc(var(--sx,0) + var(--dx,0px)), calc(var(--sy,0) - var(--dy,220px))) rotate(45deg) scale(1.15)}
+    }
+
+    /* Compliment animation */
+    .pop{
+      animation: pop .42s cubic-bezier(.2,.8,.2,1);
+    }
+    @keyframes pop{
+      0%{transform: translateY(6px) scale(.98); filter: blur(.1px); opacity:.55}
+      100%{transform: translateY(0) scale(1); opacity:1}
+    }
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      .film,.stars span,.pulse{animation:none}
+      button{transition:none}
+    }
+
+    /* Tiny icons */
+    .ico{width:18px; height:18px; display:inline-block}
+    .ico svg{width:100%; height:100%}
+  </style>
+</head>
+
+<body>
+  <div class="film" aria-hidden="true"></div>
+  <div class="stars" aria-hidden="true" id="stars"></div>
+  <div class="burst" aria-hidden="true" id="burst"></div>
+
+  <div class="wrap">
+    <section class="card" role="region" aria-label="A sweet page for my best friend">
+      <div class="topGlow"></div>
+
+      <header>
+        <div>
+          <div class="badge">
+            <span class="pulse" aria-hidden="true"></span>
+            <span id="badgeText">A little surprise for you</span>
+          </div>
+
+          <h1 style="margin-top:14px">
+            Hey <span class="gradientText" id="name">Bestie</span>,
+            <br />you make life feel <span class="gradientText">lighter</span> ✨
+          </h1>
+
+          <p class="sub" id="sub">
+            This page is a tiny reminder that you’re genuinely special — and I’m grateful for you in a way words don’t always cover.
+          </p>
+
+          <div class="ctaRow">
+            <button class="primary" id="btnCompliment" aria-label="Show a new compliment">
+              <span class="ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s-7-4.35-9.5-8.42C.33 9.05 2.24 5.5 6.1 5.5c2 0 3.2 1 3.9 1.85.7-.85 1.9-1.85 3.9-1.85 3.86 0 5.77 3.55 3.6 7.08C19 16.65 12 21 12 21Z" stroke="rgba(255,255,255,.92)" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              </span>
+              New compliment
+            </button>
+
+            <button id="btnRain" aria-label="Make hearts rain">
+              <span class="ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 21c2 0 4-1.5 4-4s-2-4-4-4-4 1.5-4 4 2 4 4 4Zm8 0c2 0 4-1.5 4-4s-2-4-4-4-4 1.5-4 4 2 4 4 4Zm-4-10c2.5-2.2 3.7-4.1 3.7-5.6C15.7 3.7 14.4 2.5 12.8 2.5c-1 0-2 .6-2.8 1.6C9.2 3.1 8.2 2.5 7.2 2.5 5.6 2.5 4.3 3.7 4.3 5.4c0 1.5 1.2 3.4 3.7 5.6" stroke="rgba(255,255,255,.92)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              Hearts rain
+            </button>
+
+            <button id="btnFull" aria-label="Toggle full screen">
+              <span class="ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 3H5a2 2 0 0 0-2 2v3m19 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m11 0h3a2 2 0 0 0 2-2v-3" stroke="rgba(255,255,255,.92)" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </span>
+              Fullscreen
+            </button>
+          </div>
+        </div>
+
+        <div class="right">
+          <div class="miniCard">
+            <div class="statRow">
+              <span class="pill">💗 100% real</span>
+              <span class="pill">✨ best-friend energy</span>
+              <span class="pill">🌈 mood booster</span>
+            </div>
+            <p class="sub" style="margin:10px 0 0">
+              Tap <b>New compliment</b> whenever you need a smile. Each one is here to remind you what I already know.
+            </p>
+          </div>
+
+          <div class="miniCard">
+            <div class="statRow">
+              <span class="pill">🫶 supportive</span>
+              <span class="pill">🌸 kind</span>
+              <span class="pill">⚡ unstoppable</span>
+            </div>
+            <p class="sub" style="margin:10px 0 0">
+              Bonus: click anywhere on the card for a tiny heart burst.
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <div class="divider" aria-hidden="true"></div>
+
+      <main>
+        <section class="bigCompliment" aria-label="Main compliment">
+          <div class="quote">
+            <div class="mark" aria-hidden="true">❝</div>
+            <p class="complimentText" id="compliment">
+              You have this rare kind of magic — you make people feel safe, seen, and genuinely valued.
+            </p>
+          </div>
+          <div class="meta">
+            <span class="tag" id="tag">💎 One-of-one human</span>
+            <span class="tag">Tap ✨ for more</span>
+          </div>
+        </section>
+
+        <aside class="grid" aria-label="Side notes">
+          <section class="note">
+            <h3>Three things I adore about you</h3>
+            <ul class="list" id="adoreList">
+              <li><span class="check">✓</span><span>Your heart is huge — you show up for people in the most beautiful way.</span></li>
+              <li><span class="check">✓</span><span>Your vibe is comforting. You can turn a bad day into a soft one.</span></li>
+              <li><span class="check">✓</span><span>Your smile is contagious… it’s basically a public service.</span></li>
+            </ul>
+          </section>
+
+          <section class="note">
+            <h3>A tiny promise</h3>
+            <p id="promise">
+              If you ever forget how amazing you are, I’ll be right here — loudly reminding you until you believe it again.
+            </p>
+          </section>
+        </aside>
+      </main>
+
+      <footer>
+        <span id="footerLeft">Made with extra care 💖</span>
+        <span id="footerRight">Tip: press <b>Space</b> for a new compliment</span>
+      </footer>
+    </section>
+  </div>
+
+  <script>
+    // -------------------------------------------------
+    // ✅ Quick personalize here
+    // -------------------------------------------------
+    const FRIEND_NAME = "Bestie"; // <-- change to her name (e.g., "Aanya")
+    const YOUR_NAME = "Your Best Friend"; // <-- change to your name
+
+    // -------------------------------------------------
+    // Compliments (sweet, friendly, non-romantic)
+    // -------------------------------------------------
+    const compliments = [
+      { text: "You’re the kind of person who makes others feel instantly calmer — that’s a superpower.", tag: "🌙 Peace-maker" },
+      { text: "Your kindness isn’t loud… it’s consistent. And that’s what makes it so special.", tag: "🌸 Pure heart" },
+      { text: "You’re unbelievably strong — and still gentle. That balance is rare.", tag: "🛡️ Soft + strong" },
+      { text: "You make ordinary moments feel like memories worth keeping.", tag: "📸 Memory maker" },
+      { text: "Your presence feels like a warm hoodie on a cold day. Comforting. Safe.", tag: "🧸 Comfort energy" },
+      { text: "You’re not just smart — you’re thoughtful, and that makes you shine.", tag: "💡 Thoughtful mind" },
+      { text: "You have a beautiful way of seeing the best in people — including when they forget it.", tag: "🌈 Light finder" },
+      { text: "Even when you’re tired, you still care. That says everything about your heart.", tag: "💗 Big-hearted" },
+      { text: "You’re the friend people secretly wish they had — lucky me.", tag: "🍀 Lucky" },
+      { text: "Your laugh is pure therapy. The world literally feels better around you.", tag: "😂 Joy giver" },
+      { text: "You handle life with so much grace — and you still stay real.", tag: "✨ Grace + realness" },
+      { text: "You’re the definition of ‘safe person’. That’s priceless.", tag: "🫶 Safe place" },
+      { text: "You’re a walking reminder that good humans still exist.", tag: "💎 One-of-one" },
+      { text: "You inspire people without even trying — just by being you.", tag: "⚡ Quiet inspiration" },
+      { text: "You’re the kind of friend that turns chaos into calm.", tag: "🌊 Calm in storms" },
+      { text: "Your heart is soft, but your spine is steel. Respect.", tag: "🦋 + 🧱" },
+      { text: "You’re so lovable — not because you try, but because you’re genuinely good.", tag: "🌷 Naturally lovable" },
+      { text: "You make people feel included. That’s real leadership.", tag: "👑 Kind leader" },
+      { text: "You’re the friend who turns ‘I can’t’ into ‘watch me’.", tag: "🔥 Motivator" },
+      { text: "You deserve the same care you give everyone else — and I’m rooting for you always.", tag: "🤍 Deserving" },
+    ];
+
+    // Extra cute lines for the header badge rotation
+    const badgeLines = [
+      "A little surprise for you",
+      "Open when you need a smile",
+      "This page is basically a hug",
+      "Best-friend appreciation zone",
+      "Warning: compliments ahead",
+    ];
+
+    // -------------------------------------------------
+    // DOM hooks
+    // -------------------------------------------------
+    const elName = document.getElementById('name');
+    const elCompliment = document.getElementById('compliment');
+    const elTag = document.getElementById('tag');
+    const btn = document.getElementById('btnCompliment');
+    const btnRain = document.getElementById('btnRain');
+    const btnFull = document.getElementById('btnFull');
+    const burst = document.getElementById('burst');
+    const stars = document.getElementById('stars');
+    const badgeText = document.getElementById('badgeText');
+    const footerLeft = document.getElementById('footerLeft');
+
+    // Set names
+    elName.textContent = FRIEND_NAME;
+    footerLeft.textContent = `Made with extra care 💖 — from ${YUG 💖}`;
+
+    // -------------------------------------------------
+    // Stars
+    // -------------------------------------------------
+    function seedStars(){
+      const count = 32;
+      const frag = document.createDocumentFragment();
+      for(let i=0;i<count;i++){
+        const s = document.createElement('span');
+        const x = Math.random()*100;
+        const y = Math.random()*100;
+        s.style.left = x + '%';
+        s.style.top = y + '%';
+        s.style.opacity = String(0.25 + Math.random()*0.7);
+        s.style.setProperty('--t', (3 + Math.random()*7).toFixed(2) + 's');
+        frag.appendChild(s);
+      }
+      stars.appendChild(frag);
+    }
+    seedStars();
+
+    // -------------------------------------------------
+    // Compliment engine
+    // -------------------------------------------------
+    let lastIndex = -1;
+    function pickNew(){
+      let i;
+      do { i = Math.floor(Math.random()*compliments.length); }
+      while(i === lastIndex && compliments.length > 1);
+      lastIndex = i;
+      return compliments[i];
+    }
+
+    function showCompliment(){
+      const c = pickNew();
+      elCompliment.classList.remove('pop');
+      void elCompliment.offsetWidth; // restart animation
+      elCompliment.textContent = c.text;
+      elTag.textContent = c.tag;
+      elCompliment.classList.add('pop');
+
+      // tiny burst near button
+      const r = btn.getBoundingClientRect();
+      burstHearts(r.left + r.width*0.5, r.top + r.height*0.5, 10);
+
+      // haptic-ish: quick background flash
+      flashAccent();
+    }
+
+    // -------------------------------------------------
+    // Badge rotation
+    // -------------------------------------------------
+    let badgeI = 0;
+    setInterval(()=>{
+      badgeI = (badgeI + 1) % badgeLines.length;
+      badgeText.textContent = badgeLines[badgeI];
+    }, 2800);
+
+    // -------------------------------------------------
+    // Heart burst
+    // -------------------------------------------------
+    function burstHearts(x, y, n=14){
+      const rect = burst.getBoundingClientRect();
+      const bx = x - rect.left;
+      const by = y - rect.top;
+
+      for(let i=0;i<n;i++){
+        const h = document.createElement('div');
+        h.className = 'heart';
+
+        const hueChoice = [
+          'rgba(255,77,141,.95)',
+          'rgba(124,58,237,.92)',
+          'rgba(34,197,94,.85)',
+          'rgba(255,255,255,.85)'
+        ][Math.floor(Math.random()*4)];
+
+        const dx = (Math.random()*2 - 1) * (60 + Math.random()*140);
+        const dy = 140 + Math.random()*220;
+        const d = 900 + Math.random()*700;
+
+        h.style.left = bx + 'px';
+        h.style.top = by + 'px';
+        h.style.setProperty('--dx', dx.toFixed(1) + 'px');
+        h.style.setProperty('--dy', dy.toFixed(1) + 'px');
+        h.style.setProperty('--d', d.toFixed(0) + 'ms');
+        h.style.setProperty('--c', hueChoice);
+        h.style.setProperty('--sx', (Math.random()*18-9).toFixed(1) + 'px');
+        h.style.setProperty('--sy', (Math.random()*18-9).toFixed(1) + 'px');
+
+        burst.appendChild(h);
+        setTimeout(()=>h.remove(), d + 50);
+      }
+    }
+
+    // Heart rain (gentle)
+    let raining = false;
+    let rainTimer = null;
+
+    function startRain(){
+      if(raining) return;
+      raining = true;
+      btnRain.textContent = 'Stop rain';
+      btnRain.classList.add('primary');
+
+      rainTimer = setInterval(()=>{
+        const x = Math.random() * window.innerWidth;
+        const y = 10 + Math.random() * 60;
+        burstHearts(x, y, 4);
+      }, 220);
+
+      setTimeout(()=>{ if(raining) stopRain(); }, 5200);
+    }
+
+    function stopRain(){
+      raining = false;
+      btnRain.textContent = 'Hearts rain';
+      btnRain.classList.remove('primary');
+      if(rainTimer) clearInterval(rainTimer);
+      rainTimer = null;
+    }
+
+    // -------------------------------------------------
+    // Fullscreen toggle
+    // -------------------------------------------------
+    async function toggleFull(){
+      try{
+        if(!document.fullscreenElement){
+          await document.documentElement.requestFullscreen();
+          btnFull.textContent = 'Exit';
+        } else {
+          await document.exitFullscreen();
+          btnFull.textContent = 'Fullscreen';
+        }
+      } catch(e){
+        // Ignore if blocked
+      }
+    }
+
+    // -------------------------------------------------
+    // Accent flash
+    // -------------------------------------------------
+    function flashAccent(){
+      const card = document.querySelector('.card');
+      card.animate([
+        { boxShadow: '0 18px 50px rgba(0,0,0,.45)' },
+        { boxShadow: '0 18px 60px rgba(255,77,141,.25)' },
+        { boxShadow: '0 18px 50px rgba(0,0,0,.45)' },
+      ], { duration: 520, easing: 'ease-out' });
+    }
+
+    // -------------------------------------------------
+    // Events
+    // -------------------------------------------------
+    btn.addEventListener('click', showCompliment);
+    btnRain.addEventListener('click', ()=> raining ? stopRain() : startRain());
+    btnFull.addEventListener('click', toggleFull);
+
+    // Click anywhere on the card = heart burst
+    document.querySelector('.card').addEventListener('click', (e)=>{
+      // prevent double-burst on button clicks (they already burst)
+      if(e.target.closest('button')) return;
+      burstHearts(e.clientX, e.clientY, 14);
+    });
+
+    // Space key for compliment
+    window.addEventListener('keydown', (e)=>{
+      if(e.code === 'Space'){
+        e.preventDefault();
+        showCompliment();
+      }
+      if(e.code === 'KeyH'){
+        raining ? stopRain() : startRain();
+      }
+    });
+
+    // Welcome animation: show a compliment + a small burst
+    window.addEventListener('load', ()=>{
+      showCompliment();
+      setTimeout(()=> burstHearts(window.innerWidth*0.5, window.innerHeight*0.35, 18), 450);
+    });
+
+    // Small touch: update subtitle with the friend name
+    const sub = document.getElementById('sub');
+    sub.textContent = `Hey ${FRIEND_NAME} — this is a tiny reminder that you’re genuinely special, and I’m grateful for you in a way words don’t always cover.`;
+
+  </script>
+</body>
+</html>
